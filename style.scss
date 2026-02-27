@@ -66,10 +66,49 @@ body {
   animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
   transform: translateY(20px);
+}
+
+.post-card {
+  cursor: pointer;
   
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+  }
+
+  .post-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    
+    a {
+      color: $darkGray;
+      text-decoration: none;
+      
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+  
+  .post-meta {
+    font-family: "Courier New", Courier, monospace;
+    color: $gray;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .read-more {
+    display: inline-block;
+    margin-top: 20px;
+    color: $blue;
+    font-weight: 500;
+    text-decoration: none;
+    transition: margin-left 0.3s ease;
+    
+    &:hover {
+      margin-left: 5px;
+      text-decoration: underline;
+    }
   }
 }
 
@@ -165,26 +204,16 @@ body {
 
 // Home Intro Layout
 .home-intro {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: block; /* 改为块级布局，消除 Flex 导致的偏移 */
+    text-align: center;
     margin-bottom: 40px;
     animation: fadeIn 1s ease-out;
-
-    @include mobile {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
 }
 
 // Intro Section Details
 .intro-text {
-    flex: 2;
-    padding-right: 40px;
-
-    @include mobile {
-        padding-right: 0;
-    }
+    padding-right: 0; /* 移除 Flex 时代的 padding */
+    margin-bottom: 30px;
 
     h2 {
         font-size: 36px;
@@ -212,23 +241,8 @@ body {
 }
 
 .intro-avatar {
-    flex: 1;
+    /* Legacy class, keeping just in case */
     text-align: center;
-    
-    .avatar-img {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        border: 4px solid #fff;
-        transition: all 0.4s ease;
-
-        &:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-    }
 }
 
 .section-divider {

@@ -4,9 +4,11 @@ layout: default
 
 <div class="home-intro">
   <div class="intro-header">
-      <!-- Removed site description h2 as per user request to use typewriter text only -->
-      
-      <div class="intro-content-wrapper">
+    <div class="intro-text">
+      <h2>{{ site.description }}</h2>
+    </div>
+    
+    <div class="intro-content-wrapper">
       <div class="intro-avatar-section">
         <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
         <div class="avatar-info">
@@ -31,18 +33,6 @@ layout: default
 </div>
 
 <div class="section-divider"></div>
-
-<div class="posts-container">
-  <h3 class="posts-title">Recent Posts</h3>
-  <ul class="posts">
-    {% for post in site.posts limit:5 %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-        <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-</div>
 
 <script>
     // 打字机效果
