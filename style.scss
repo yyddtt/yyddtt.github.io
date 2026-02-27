@@ -35,6 +35,10 @@ body {
   max-width: 800px;
   padding: 0 20px;
   width: 100%;
+  
+  @media screen and (min-width: 1200px) {
+    max-width: 1000px; /* 在大屏幕上增加宽度 */
+  }
 }
 
 #main {
@@ -66,6 +70,47 @@ body {
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+  }
+}
+
+/*********************/
+/* FOOTER            */
+/*********************/
+
+.wrapper-footer {
+  margin-top: 50px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: transparent;
+  padding: 40px 0;
+}
+
+.footer {
+  text-align: center;
+  color: $gray;
+  
+  .footer-link {
+    display: inline-block;
+    margin: 0 10px;
+    color: $gray;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    
+    &:hover {
+      color: $blue;
+      transform: translateY(-3px);
+    }
+    
+    .footer-icon {
+      font-size: 24px;
+    }
+  }
+  
+  .copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: lighten($gray, 10%);
   }
 }
 
@@ -420,8 +465,8 @@ nav {
       font-weight: 600; /* 加粗 */
       color: $blue; /* 变色 */
       
-      /* 下划线动画效果 */
-      &:after {
+      /* 下划线动画效果 - 移除 */
+      /* &:after {
         content: '';
         position: absolute;
         width: 100%;
@@ -431,7 +476,7 @@ nav {
         background-color: $blue;
         transform: scaleX(1);
         transition: transform 0.3s ease;
-      }
+      } */
     }
     
     &:hover {
@@ -471,8 +516,8 @@ nav {
     display: flex;
     align-items: center; /* 垂直居中 */
     justify-content: center;
-    gap: 50px; /* 左右间距 */
-    max-width: 1000px;
+    gap: 30px; /* 减小左右间距，防止内容太分散 */
+    max-width: 100%; /* 允许占满容器 */
     margin: 0 auto;
     
     @include mobile {
@@ -506,7 +551,9 @@ nav {
     margin: 0; /* 移除原来的 margin */
     /* 固定高度和宽度防止布局跳动 */
     height: 120px; 
-    width: 400px; /* 固定宽度 */
+    width: auto; /* 改为自适应宽度，但设置最大宽度 */
+    min-width: 300px;
+    max-width: 500px;
     display: flex;
     align-items: center; /* 垂直居中 */
     justify-content: flex-start; /* 文字左对齐 */
@@ -514,6 +561,7 @@ nav {
     
     @include mobile {
       width: 100%;
+      min-width: auto;
       justify-content: center;
       text-align: center;
       height: auto;
