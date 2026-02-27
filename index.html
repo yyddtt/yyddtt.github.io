@@ -26,7 +26,9 @@ layout: default
       </div>
       
       <div class="typewriter-container tagline">
-        <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
+        <div class="typewriter-content">
+          <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -35,42 +37,37 @@ layout: default
 <div class="section-divider"></div>
 
 <script>
-  const text = "现实的抽象是语言，语言的抽象是程序，程序的抽象是数理逻辑，数理逻辑的抽象是超越认知的真理。";
-  const typewriterElement = document.getElementById('typewriter');
-  let index = 0;
-  let isDeleting = false;
-  let wait = 2000; // 停顿时间
+    // 打字机效果
+    const text = "{{ site.description }}";
+    const typewriterElement = document.getElementById('typewriter');
+    let i = 0;
+    let isDeleting = false;
+    let timer = null;
 
-  function type() {
-    const currentText = text;
+    function typeWriter() {
+      if (isDeleting) {
+        // 删除过程
+        if (i >= 0) {
+          typewriterElement.textContent = text.substring(0, i);
+          i--;
+          timer = setTimeout(typeWriter, 50); // 删除速度
+        } else {
+          isDeleting = false;
+          timer = setTimeout(typeWriter, 500); // 删除完停顿
+        }
+      } else {
+        // 输入过程
+        if (i <= text.length) {
+          typewriterElement.textContent = text.substring(0, i);
+          i++;
+          timer = setTimeout(typeWriter, 100); // 输入速度
+        } else {
+          isDeleting = true;
+          timer = setTimeout(typeWriter, 2000); // 输完停顿
+        }
+      }
+    }
     
-    if (isDeleting) {
-      typewriterElement.textContent = currentText.substring(0, index - 1);
-      index--;
-    } else {
-      typewriterElement.textContent = currentText.substring(0, index + 1);
-      index++;
-    }
-
-    let typeSpeed = 100;
-
-    if (isDeleting) {
-      typeSpeed /= 2; // 删除速度快一点
-    }
-
-    if (!isDeleting && index === currentText.length) {
-      typeSpeed = wait; // 打完后停顿
-      isDeleting = true;
-    } else if (isDeleting && index === 0) {
-      isDeleting = false;
-      typeSpeed = 500; // 删除完后停顿一小会
-    }
-
-    setTimeout(type, typeSpeed);
-  }
-
-  // 页面加载完成后开始打字
-  window.addEventListener('load', () => {
-    setTimeout(type, 1000); // 延迟1秒开始
-  });
-</script>
+    // 启动打字机
+    setTimeout(typeWriter, 1000);
+  </script>

@@ -96,15 +96,64 @@ body {
     font-size: 20px;
     transition: all 0.3s ease;
     text-decoration: none;
+    position: relative; /* 为 tooltip 定位 */
     
     &:hover {
       color: $blue;
       transform: translateY(-3px);
+      
+      /* Show tooltip on hover */
+      &:after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        margin-bottom: 8px;
+        opacity: 1;
+        visibility: visible;
+        z-index: 100;
+        pointer-events: none;
+      }
+      
+      /* Tooltip arrow */
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: rgba(0,0,0,0.8);
+        margin-bottom: -2px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+      }
     }
     
     .footer-icon {
       font-size: 24px;
     }
+    
+    /* 特定图标的悬浮颜色 */
+    &[href*="github.com"]:hover { color: #333; }
+    &[href*="twitter.com"]:hover { color: #1DA1F2; }
+    &[href*="facebook.com"]:hover { color: #1877F2; }
+    &[href*="linkedin.com"]:hover { color: #0077B5; }
+    &[href*="instagram.com"]:hover { color: #E4405F; }
+    &[href*="youtube.com"]:hover { color: #FF0000; }
+    &[href*="qq.com"]:hover { color: #12B7F5; }
+    &[href*="xiaohongshu.com"]:hover { color: #FF2442; }
+    &[href*="mailto"]:hover { color: #EA4335; }
+    &[href*="feed.xml"]:hover { color: #EE802F; }
+    &[href="#"]:hover { color: #005A9C; } /* NEU Blue */
   }
   
   .copyright {
@@ -454,6 +503,8 @@ nav {
     font-weight: 300;
     letter-spacing: 1px;
     position: relative; /* 为伪元素定位 */
+    text-decoration: none !important; /* 强制移除所有下划线 */
+    border-bottom: none !important; /* 确保没有边框下划线 */
 
     @include mobile {
       margin: 0 10px;
@@ -464,6 +515,8 @@ nav {
     &.current {
       font-weight: 600; /* 加粗 */
       color: $blue; /* 变色 */
+      text-decoration: none !important; /* 再次确保选中时无下划线 */
+      border: none !important;
       
       /* 下划线动画效果 - 移除 */
       /* &:after {
@@ -481,6 +534,7 @@ nav {
     
     &:hover {
       color: darken($blue, 10%);
+      text-decoration: none !important; /* 悬浮时也不要有下划线 */
     }
   }
 }
@@ -548,16 +602,15 @@ nav {
   }
 
   .typewriter-container.tagline {
-    margin: 0; /* 移除原来的 margin */
-    /* 固定高度和宽度防止布局跳动 */
+    margin: 0; 
     height: 120px; 
-    width: auto; /* 改为自适应宽度，但设置最大宽度 */
+    width: 650px; /* 固定宽度 */
     min-width: 300px;
-    max-width: 500px;
     display: flex;
     align-items: center; /* 垂直居中 */
-    justify-content: flex-start; /* 文字左对齐 */
+    justify-content: flex-start; /* 内部内容左对齐 */
     padding: 0;
+    text-align: left; /* 确保文字左对齐 */
     
     @include mobile {
       width: 100%;
@@ -568,22 +621,29 @@ nav {
       min-height: 80px;
     }
     
-    .typewriter-text {
-      font-size: 18px;
-      color: $gray;
-      font-weight: 400;
-      background: none;
-      -webkit-text-fill-color: $gray;
-      font-family: "Courier New", Courier, monospace;
-      line-height: 1.6;
-      display: block;
-      text-align: left; /* 强制左对齐 */
-      
-      @include mobile {
-        font-size: 16px;
-        text-align: center;
-      }
+    /* 包裹文字和光标的容器，确保它们在一起 */
+  .typewriter-content {
+    display: inline-block;
+    text-align: left;
+    width: 100%; /* 占满父容器 */
+  }
+
+  .typewriter-text {
+    font-size: 18px;
+    color: $gray;
+    font-weight: 400;
+    background: none;
+    -webkit-text-fill-color: $gray;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.6;
+    display: inline; /* 关键：内联显示 */
+    white-space: pre-wrap; 
+    
+    @include mobile {
+      font-size: 16px;
+      text-align: center;
     }
+  }
     
     .cursor {
       background-color: $gray;
