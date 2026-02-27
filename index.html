@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<div class="home-intro">
+  <div class="intro-text">
+    <h2>你好！我是 <span class="highlight-name">闫德腾</span> 👋</h2>
+    <p>
+      <strong>东北大学 (NEU)</strong> 的软件学院 (2022-2026)，
+      <strong>北京航空航天大学 (BUAA)</strong> 计算机学院 VR 专业的直博预录取博士生。
+    </p>
+    <p>
+      我的研究兴趣主要集中在 <strong>虚拟现实 (Virtual Reality)</strong>、<strong>计算机图形学 (Computer Graphics)</strong> 以及 <strong>人机交互 (HCI)</strong>。
+    </p>
+    
+    <div class="social-links">
+      <a href="mailto:2050604790@qq.com" class="btn">Email</a>
+      <a href="https://github.com/yyddtt" class="btn">GitHub</a>
+      <!-- Add more links here -->
+    </div>
+  </div>
+  <div class="intro-avatar">
+    <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="home-sections">
+  <div class="section-news">
+    <h3>🔥 新闻动态 (News)</h3>
+    <ul class="news-list">
+      <li>
+        <span class="date">2026-02</span>
+        <span class="content">获得了北京航空航天大学直博预录取资格！🎉</span>
+      </li>
+      <li>
+        <span class="date">2026-02</span>
+        <span class="content">建立了我的个人主页。</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-recent-posts">
+    <h3>📝 最近更新 (Recent Posts)</h3>
+    <ul class="recent-posts-list">
+      {% for post in site.posts limit:3 %}
+      <li>
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ site.baseurl }}/blog" class="more-link">查看更多博客 &rarr;</a>
+  </div>
+</div>
