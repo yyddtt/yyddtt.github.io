@@ -245,6 +245,87 @@ img {
   }
 }
 
+// 导航栏头像样式
+.site-avatar {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  margin-top: 5px; // 微调垂直对齐
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover; // 确保图片不变形
+  }
+
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.site-info {
+  float: left;
+  display: block;
+
+  .site-name {
+    margin: 0;
+    cursor: pointer;
+    font-family: $helveticaNeue;
+    font-weight: 300;
+    font-size: 24px; // 稍微调小一点，更精致
+    letter-spacing: 1px;
+    line-height: 50px; // 垂直居中
+  }
+
+  .site-description {
+    display: none; // 导航栏不显示描述，太挤了
+  }
+
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    
+    .site-name {
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+  }
+}
+
+nav {
+  float: right;
+  margin-top: 15px; // 垂直居中微调
+  font-family: $helveticaNeue;
+  font-size: 16px;
+
+  @include mobile {
+    float: none;
+    margin-top: 10px;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  a {
+    margin-left: 20px;
+    color: $darkGray;
+    text-align: right;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    @include mobile {
+      margin: 0 10px;
+      color: $blue;
+    }
+  }
+}
+
 // 首页介绍部分的特殊样式
 .home-intro {
   text-align: center;
