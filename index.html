@@ -3,20 +3,29 @@ layout: default
 ---
 
 <div class="home-intro">
-  <div class="intro-text">
-    <h2>
-      {{ site.description }}
-    </h2>
-    <div class="typewriter-container">
-      <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
+  <div class="intro-header">
+    <div class="intro-text">
+      <h2>
+        {{ site.description }}
+      </h2>
+    </div>
+    <div class="intro-avatar">
+      <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
+      <div class="avatar-info">
+        <div class="info-item" data-tooltip="北京航空航天大学 (BUAA)">
+          <i class="fas fa-university info-icon"></i>
+          <span>BUAA</span>
+        </div>
+        <div class="info-item" data-tooltip="计算机图形学，物理仿真">
+          <i class="fas fa-microchip info-icon"></i>
+          <span>CG & PhysSim</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="intro-avatar">
-    <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
-    <div class="avatar-info">
-      <p>学校：BUAA</p>
-      <p>方向：计算机图形学，物理仿真</p>
-    </div>
+  
+  <div class="typewriter-container tagline">
+    <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
   </div>
 </div>
 
