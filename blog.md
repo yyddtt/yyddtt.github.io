@@ -10,7 +10,7 @@ permalink: /blog/
       <div class="post-meta">{{ post.date | date: "%B %d, %Y" }}</div>
       <h2><a class="post-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
       <div class="entry">
-        {{ post.excerpt | strip_html | truncatewords: 50 }}
+        {{ post.excerpt | strip_html | truncate: 150 }}
       </div>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More &rarr;</a>
     </article>
