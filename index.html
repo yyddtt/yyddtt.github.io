@@ -4,18 +4,29 @@ layout: default
 
 <div class="home-intro">
   <div class="intro-text">
-    <h2>你好！我是 <span class="highlight-name">闫德腾</span> 👋</h2>
-    <p>
-      <strong>北京航空航天大学 (BUAA)</strong> 计算机学院2026级直博
-    </p>
-    <p>
-      专业：<strong>计算机图形学 </strong> 
-    </p>
+    <h2>
+      {{ site.description }}
+      <span class="typewriter-wrapper">
+        <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
+      </span>
+    </h2>
+
+    <div class="intro-details">
+      <p>
+        <strong>BUAA</strong> 计算机学院2026级直博
+      </p>
+      <p>
+        专业：<strong>计算机图形学</strong>、<strong>物理仿真</strong> 
+      </p>
+    </div>
     
     <div class="social-links">
-      <a href="mailto:2050604790@qq.com" class="btn btn-social" data-tooltip="联系我: 2050604790@qq.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/yyddtt" class="btn btn-social" data-tooltip="关注我的 GitHub: yyddtt"><i class="fab fa-github"></i></a>
-      <!-- Add more links here -->
+      <a href="mailto:2050604790@qq.com" class="btn btn-social" data-tooltip="Email: 2050604790@qq.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/yyddtt" class="btn btn-social" data-tooltip="GitHub: yyddtt"><i class="fab fa-github"></i></a>
+      <a href="#" class="btn btn-social" data-tooltip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      <a href="http://wpa.qq.com/msgrd?v=3&uin=2050604790&site=qq&menu=yes" target="_blank" class="btn btn-social" data-tooltip="QQ: 2050604790"><i class="fab fa-qq"></i></a>
+      <a href="https://www.xiaohongshu.com/user/profile/12345678" target="_blank" class="btn btn-social" data-tooltip="关注我的小红书"><i class="fas fa-book"></i></a> <!-- 小红书 Placeholder -->
+      <a href="/blog" class="btn btn-social" data-tooltip="RSS 订阅"><i class="fas fa-rss"></i></a>
     </div>
   </div>
   <div class="intro-avatar">
@@ -33,13 +44,35 @@ layout: default
   const text = "现实的抽象是语言，语言的抽象是程序，程序的抽象是数理逻辑，数理逻辑的抽象是超越认知的真理。";
   const typewriterElement = document.getElementById('typewriter');
   let index = 0;
+  let isDeleting = false;
+  let wait = 2000; // 停顿时间
 
   function type() {
-    if (index < text.length) {
-      typewriterElement.textContent += text.charAt(index);
+    const currentText = text;
+    
+    if (isDeleting) {
+      typewriterElement.textContent = currentText.substring(0, index - 1);
+      index--;
+    } else {
+      typewriterElement.textContent = currentText.substring(0, index + 1);
       index++;
-      setTimeout(type, 100); // 打字速度
     }
+
+    let typeSpeed = 100;
+
+    if (isDeleting) {
+      typeSpeed /= 2; // 删除速度快一点
+    }
+
+    if (!isDeleting && index === currentText.length) {
+      typeSpeed = wait; // 打完后停顿
+      isDeleting = true;
+    } else if (isDeleting && index === 0) {
+      isDeleting = false;
+      typeSpeed = 500; // 删除完后停顿一小会
+    }
+
+    setTimeout(type, typeSpeed);
   }
 
   // 页面加载完成后开始打字
