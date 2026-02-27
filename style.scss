@@ -530,7 +530,7 @@ nav {
     
     .intro-text h2 {
       font-size: 48px;
-      margin-bottom: 20px;
+      margin-bottom: 40px; /* 增加标题和内容的间距 */
       background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
       background-size: 400% 400%;
       -webkit-background-clip: text;
@@ -546,15 +546,59 @@ nav {
     }
   }
 
-  .typewriter-container.tagline {
-    margin: 20px auto 40px;
-    /* 固定高度防止换行时布局跳动 (18px * 1.5 * 3行 ≈ 81px) */
-    height: 85px; 
+  /* 新增 Flex 布局容器 */
+  .intro-content-wrapper {
     display: flex;
-    align-items: flex-start; /* 顶部对齐，文字向下生长 */
-    justify-content: center; /* 水平居中 */
-    max-width: 800px;
-    padding: 0 20px; /* 防止贴边 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center;
+    gap: 50px; /* 左右间距 */
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .intro-avatar-section {
+      flex: 0 0 auto; /* 固定宽度，不伸缩 */
+      text-align: center;
+      
+      .avatar-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        display: block;
+        margin: 0 auto 15px; /* 图片居中 */
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: rotate(5deg) scale(1.05);
+        }
+      }
+    }
+  }
+
+  .typewriter-container.tagline {
+    margin: 0; /* 移除原来的 margin */
+    /* 固定高度和宽度防止布局跳动 */
+    height: 120px; 
+    width: 400px; /* 固定宽度 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: flex-start; /* 文字左对齐 */
+    padding: 0;
+    
+    @include mobile {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      height: auto;
+      min-height: 80px;
+    }
     
     .typewriter-text {
       font-size: 18px;
@@ -564,23 +608,24 @@ nav {
       -webkit-text-fill-color: $gray;
       font-family: "Courier New", Courier, monospace;
       line-height: 1.6;
-      display: inline-block; /* 允许 text-align 生效 */
-      text-align: center; /* 保持居中，视觉上更平衡 */
+      display: block;
+      text-align: left; /* 强制左对齐 */
       
       @include mobile {
         font-size: 16px;
-        /* 移动端可能需要更多高度，但 85px 对于 16px 字体约可容纳 3-4 行，通常够用 */
+        text-align: center;
       }
     }
     
     .cursor {
       background-color: $gray;
       height: 1.2em;
-      width: 10px; /* 加宽光标，更像终端块 */
+      width: 10px; 
       display: inline-block;
       vertical-align: bottom;
       animation: blink 1s step-end infinite;
       margin-left: 2px;
+      flex-shrink: 0; /* 防止光标被压缩 */
     }
   }
 
