@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 笔记
+title: 学习笔记
 hide_title: true
 ---
 
