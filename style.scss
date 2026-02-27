@@ -174,8 +174,6 @@ body {
     
     .tag {
       display: inline-block;
-      background: #f0f2f5;
-      color: #666;
       font-size: 12px;
       padding: 4px 10px;
       border-radius: 12px;
@@ -184,9 +182,34 @@ body {
       text-decoration: none;
       transition: all 0.2s;
       
+      /* 默认淡雅色系 - 莫兰迪色 */
+      background: #e3f2fd; /* 淡蓝 */
+      color: #1976d2;
+
+      &:nth-child(2n) {
+        background: #e8f5e9; /* 淡绿 */
+        color: #388e3c;
+      }
+      
+      &:nth-child(3n) {
+        background: #fff3e0; /* 淡橙 */
+        color: #f57c00;
+      }
+      
+      &:nth-child(4n) {
+        background: #f3e5f5; /* 淡紫 */
+        color: #7b1fa2;
+      }
+      
+      &:nth-child(5n) {
+        background: #ffebee; /* 淡红 */
+        color: #d32f2f;
+      }
+
       &:hover {
-        background: #e1e4e8;
-        color: $darkGray;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        filter: brightness(0.95);
       }
     }
   }

@@ -10,9 +10,8 @@ permalink: /blog/
       {% if post.thumbnail %}
         <div class="card-cover" style="background-image: url('{{ site.baseurl }}{{ post.thumbnail }}')"></div>
       {% else %}
-        <div class="card-cover no-image" style="display:flex; align-items:center; justify-content:center; font-size:48px; color:#9faec5; font-weight:bold;">
-           {{ post.title | slice: 0 }}
-        </div>
+        <!-- 自动生成随机优美图片，使用 post.id 作为种子保证每篇文章图片固定 -->
+        <div class="card-cover" style="background-image: url('https://picsum.photos/seed/{{ post.id | remove: '/' }}/800/600')"></div>
       {% endif %}
       
       <div class="card-content">
