@@ -4,13 +4,9 @@ layout: default
 
 <div class="home-intro">
   <div class="intro-header">
-    <div class="intro-text">
-      <h2>
-        {{ site.description }}
-      </h2>
-    </div>
-    
-    <div class="intro-content-wrapper">
+      <!-- Removed site description h2 as per user request to use typewriter text only -->
+      
+      <div class="intro-content-wrapper">
       <div class="intro-avatar-section">
         <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
         <div class="avatar-info">
@@ -36,9 +32,21 @@ layout: default
 
 <div class="section-divider"></div>
 
+<div class="posts-container">
+  <h3 class="posts-title">Recent Posts</h3>
+  <ul class="posts">
+    {% for post in site.posts limit:5 %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
 <script>
     // 打字机效果
-    const text = "{{ site.description }}";
+    const text = "现实的抽象是语言，语言的抽象是程序，程序的抽象是数理逻辑，数理逻辑的抽象是超越认知的真理。";
     const typewriterElement = document.getElementById('typewriter');
     let i = 0;
     let isDeleting = false;

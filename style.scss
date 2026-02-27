@@ -282,18 +282,81 @@ body {
 /* SPECIAL PAGES */
 /*****************/
 
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.posts-title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: $darkGray;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: $blue;
+    margin: 10px auto 0;
+  }
+}
+
 .posts {
   list-style-type: none;
   margin-bottom: 40px;
+  padding: 0;
   
   li {
     margin-bottom: 20px;
-    border-bottom: 1px solid $lightGray;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateX(10px);
+      border-bottom-color: $blue;
+      
+      .post-link {
+        color: $blue;
+      }
+    }
     
     &:last-child {
       border-bottom: none;
     }
+    
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  .post-date {
+    font-family: "Courier New", Courier, monospace;
+    color: $gray;
+    font-size: 14px;
+    margin-right: 20px;
+    min-width: 100px;
+    
+    @include mobile {
+      margin-bottom: 5px;
+    }
+  }
+  
+  .post-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: $darkGray;
+    text-decoration: none;
+    flex: 1;
+    transition: color 0.3s ease;
   }
 }
 
@@ -460,9 +523,28 @@ body {
     cursor: pointer;
     font-family: $helveticaNeue;
     font-weight: 300;
-    font-size: 24px; // 稍微调小一点，更精致
+    font-size: 24px;
     letter-spacing: 1px;
-    line-height: 50px; // 垂直居中
+    line-height: 50px;
+    
+    a {
+      color: $darkGray !important;
+      text-decoration: none !important;
+      border: none !important;
+      background: none !important;
+      
+      &:hover {
+        text-decoration: none !important;
+        color: $darkGray !important; 
+        opacity: 0.8;
+      }
+      
+      &:visited, &:active, &:focus {
+        color: $darkGray !important;
+        text-decoration: none !important;
+        border: none !important;
+      }
+    }
   }
 
   .site-description {
