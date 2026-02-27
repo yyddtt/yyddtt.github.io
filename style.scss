@@ -548,27 +548,45 @@ nav {
 
   .typewriter-container.tagline {
     margin: 20px auto 40px;
-    min-height: 24px;
-    text-align: center;
+    /* 固定高度防止换行时布局跳动 (18px * 1.5 * 3行 ≈ 81px) */
+    height: 85px; 
+    display: flex;
+    align-items: flex-start; /* 顶部对齐，文字向下生长 */
+    justify-content: center; /* 水平居中 */
     max-width: 800px;
+    padding: 0 20px; /* 防止贴边 */
     
     .typewriter-text {
       font-size: 18px;
       color: $gray;
       font-weight: 400;
       background: none;
-      -webkit-text-fill-color: $gray; /* 重置打字机颜色为灰色，使其作为副标题 */
-      font-family: "Courier New", Courier, monospace; /* 增加打字机风格 */
+      -webkit-text-fill-color: $gray;
+      font-family: "Courier New", Courier, monospace;
+      line-height: 1.6;
+      display: inline-block; /* 允许 text-align 生效 */
+      text-align: center; /* 保持居中，视觉上更平衡 */
       
       @include mobile {
-        font-size: 14px;
+        font-size: 16px;
+        /* 移动端可能需要更多高度，但 85px 对于 16px 字体约可容纳 3-4 行，通常够用 */
       }
     }
     
     .cursor {
       background-color: $gray;
-      height: 1em;
+      height: 1.2em;
+      width: 10px; /* 加宽光标，更像终端块 */
+      display: inline-block;
+      vertical-align: bottom;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
     }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   @keyframes gradient {
