@@ -526,15 +526,28 @@ nav {
   text-align: center;
   
   h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #3494E6, #EC6EAD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
     
-    .highlight-name {
-      color: $blue;
-      font-weight: 800;
+    @include mobile {
+      font-size: 28px;
     }
   }
-  
+
+  .typewriter-container {
+    margin-bottom: 30px;
+    min-height: 24px;
+    text-align: left; /* 保持打字机左对齐或根据需求调整 */
+    
+    @include mobile {
+      text-align: center;
+    }
+  }
+
   .avatar-circle {
     width: 150px;
     height: 150px;
@@ -542,7 +555,7 @@ nav {
     object-fit: cover;
     border: 4px solid white;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    margin: 20px auto;
+    margin: 20px auto 10px; /* 底部margin减小 */
     display: block;
     transition: transform 0.3s ease;
     
@@ -550,104 +563,82 @@ nav {
       transform: rotate(5deg) scale(1.05);
     }
   }
+  
+  .avatar-info {
+    text-align: center;
+    margin-top: 15px;
+    
+    p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: lighten($darkGray, 10%);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+  }
 }
 
-// 社交链接按钮优化
-.social-links {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-start; // 左对齐
-  gap: 20px; 
+// 底部图标 Tooltip 样式
+.footer-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
   
-  .btn-social {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    border: none;
-    background: transparent;
-    color: $darkGray;
-    font-size: 20px; // 缩小图标
-    transition: all 0.3s ease;
-    text-decoration: none;
-    position: relative;
-    box-shadow: none;
-    
-    &:hover {
-      transform: scale(1.1);
-      color: $blue;
-    }
-
-    // 自定义 Tooltip 样式
-    &::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 120%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 6px 12px;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      font-size: 12px;
-      border-radius: 4px;
-      white-space: nowrap;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.2s ease;
-      margin-bottom: 5px;
-      pointer-events: none;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    &:hover::after {
-      opacity: 1;
-      visibility: visible;
-      margin-bottom: 0;
-    }
-
-    // 针对不同品牌的颜色微调
-    &[data-tooltip*="GitHub"]:hover { color: #333; }
-    &[data-tooltip*="Email"]:hover { color: #D44638; }
-    &[data-tooltip*="Scholar"]:hover { color: #4285F4; }
-    &[data-tooltip*="博客"]:hover { color: #f26522; }
-    &[data-tooltip*="QQ"]:hover { color: #12B7F5; }
-    &[data-tooltip*="小红书"]:hover { color: #FF2442; }
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 5px;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: 0;
+  }
+
+  // 针对不同品牌的颜色微调
+  &[data-tooltip*="GitHub"]:hover .footer-icon { color: #333; }
+  &[data-tooltip*="Email"]:hover .footer-icon { color: #D44638; }
+  &[data-tooltip*="Scholar"]:hover .footer-icon { color: #4285F4; }
+  &[data-tooltip*="博客"]:hover .footer-icon { color: #f26522; }
+  &[data-tooltip*="QQ"]:hover .footer-icon { color: #12B7F5; }
+  &[data-tooltip*="小红书"]:hover .footer-icon { color: #FF2442; }
 }
 
 // 打字机效果样式
-.intro-text h2 .typewriter-wrapper {
-  display: inline-block;
-  font-size: 0.45em; /* 相对标题缩小 */
-  font-weight: normal;
-  color: $gray;
-  vertical-align: middle;
-  margin-left: 15px;
+.typewriter-text {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 500;
+  background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   
   @include mobile {
-    display: block; /* 移动端换行，防止拥挤 */
-    margin-left: 0;
-    margin-top: 5px;
+    font-size: 16px;
   }
-}
-
-.typewriter-text {
-  display: inline;
-  font-size: inherit; // 继承 wrapper 大小
-  line-height: 1.6;
-  font-weight: normal;
-  color: $gray;
-  background: none;
-  -webkit-text-fill-color: initial;
 }
 
 .cursor {
   display: inline-block;
-  width: 2px; // 稍微细一点
-  height: 1.2em; // 跟随文字高度
-  background-color: $darkGray;
+  width: 2px;
+  height: 1.2em;
+  background-color: #c471ed; /* 配合渐变色 */
   margin-left: 2px;
   animation: blink 1s infinite;
   vertical-align: middle;

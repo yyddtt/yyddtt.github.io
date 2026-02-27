@@ -6,39 +6,21 @@ layout: default
   <div class="intro-text">
     <h2>
       {{ site.description }}
-      <span class="typewriter-wrapper">
-        <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
-      </span>
     </h2>
-
-    <div class="intro-details">
-      <p>
-        <strong>BUAA</strong> 计算机学院2026级直博
-      </p>
-      <p>
-        专业：<strong>计算机图形学</strong>、<strong>物理仿真</strong> 
-      </p>
-    </div>
-    
-    <div class="social-links">
-      <a href="mailto:2050604790@qq.com" class="btn btn-social" data-tooltip="Email: 2050604790@qq.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/yyddtt" class="btn btn-social" data-tooltip="GitHub: yyddtt"><i class="fab fa-github"></i></a>
-      <a href="#" class="btn btn-social" data-tooltip="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-      <a href="http://wpa.qq.com/msgrd?v=3&uin=2050604790&site=qq&menu=yes" target="_blank" class="btn btn-social" data-tooltip="QQ: 2050604790"><i class="fab fa-qq"></i></a>
-      <a href="https://www.xiaohongshu.com/user/profile/12345678" target="_blank" class="btn btn-social" data-tooltip="关注我的小红书"><i class="fas fa-book"></i></a> <!-- 小红书 Placeholder -->
-      <a href="/blog" class="btn btn-social" data-tooltip="RSS 订阅"><i class="fas fa-rss"></i></a>
+    <div class="typewriter-container">
+      <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
     </div>
   </div>
   <div class="intro-avatar">
     <img src="{{ site.avatar }}" alt="{{ site.name }}" class="avatar-img">
+    <div class="avatar-info">
+      <p>学校：BUAA</p>
+      <p>方向：计算机图形学，物理仿真</p>
+    </div>
   </div>
 </div>
 
 <div class="section-divider"></div>
-
-<div class="typewriter-container">
-  <span id="typewriter" class="typewriter-text"></span><span class="cursor"></span>
-</div>
 
 <script>
   const text = "现实的抽象是语言，语言的抽象是程序，程序的抽象是数理逻辑，数理逻辑的抽象是超越认知的真理。";
