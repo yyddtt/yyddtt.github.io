@@ -3,7 +3,9 @@ layout: default
 ---
 
 <article class="post">
+  {% unless page.hide_title %}
   <h1>{{ page.title }}</h1>
+  {% endunless %}
 
   <div class="entry">
     {{ content }}
