@@ -42,15 +42,63 @@ body {
 }
 
 #main {
-  /* Glassmorphism Effect - 仅应用于主要内容区域 */
+  /* 去除大背景卡片，改为流体布局 */
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 0;
+  min-height: 60vh;
+}
+
+/* 博客文章卡片样式 */
+.post {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-  margin-top: 20px;
-  margin-bottom: 40px;
   padding: 40px;
-  min-height: 60vh; /* 保证最小高度，避免内容少时底部上移 */
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  // 进入动画
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+  }
+}
+
+// 首页新闻和介绍部分也加上卡片样式
+.home-sections > div {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  padding: 40px;
+  margin-bottom: 30px;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+// 动画定义
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 页面标题样式优化
+.page-heading {
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: $darkerGray;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -197,134 +245,61 @@ img {
   }
 }
 
-.site-avatar {
-  float: left;
-  width: 50px; // 稍微调小一点，更精致
-  height: 50px;
-  margin-right: 15px;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-
-  img {
-    border-radius: 50%; // 圆形头像
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.1) rotate(5deg); // 动态效果
-    }
-  }
-}
-
-.site-info {
-  float: left;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.site-name {
-  margin: 0;
-  color: $darkGray;
-  cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 24px;
-  letter-spacing: 1px;
-}
-
-.site-description {
-  margin: -5px 0 0 0;
-  color: $gray;
-  font-size: 14px;
-
-  @include mobile {
-    margin: 3px 0;
-  }
-}
-
-nav {
-  float: right;
-  margin-top: 10px; // 调整对齐
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-
-  @include mobile {
-    float: none;
-    margin-top: 9px;
-    display: block;
-    font-size: 16px;
-  }
-
-  a {
-    margin-left: 20px;
-    color: $darkGray;
-    text-align: right;
-    font-weight: 300;
-    letter-spacing: 1px;
-    position: relative; // 为下划线定位
-
-    @include mobile {
-      margin: 0 10px;
+// 首页介绍部分的特殊样式
+.home-intro {
+  text-align: center;
+  
+  h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    
+    .highlight-name {
       color: $blue;
+      font-weight: 800;
     }
+  }
+  
+  .avatar-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    display: block;
+    transition: transform 0.3s ease;
     
-    // 动态下划线效果
-    &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: $blue;
-      transition: width 0.3s;
+    &:hover {
+      transform: rotate(5deg) scale(1.05);
     }
+  }
+}
+
+// 社交链接按钮优化
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  
+  a {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid $blue;
+    color: $blue;
+    transition: all 0.3s ease;
     
-    &:hover:after {
-      width: 100%;
+    &:hover {
+      background: $blue;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
     }
   }
 }
 
-//
-// .main
-//
-
-.posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-}
-
-.posts > .post:last-child {
-  padding-bottom: 1em;
-  border-bottom: none;
-}
-
-.post {
-  blockquote {
-    margin: 1.8em .8em;
-    border-left: 2px solid $gray;
-    padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
-    font-style: italic;
-  }
-
-  .comments {
-    margin-top: 10px;
-  }
-
-  .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
-  }
-}
 
 .wrapper-footer {
   margin-top: 40px;
