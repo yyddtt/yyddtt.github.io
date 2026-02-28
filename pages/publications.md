@@ -2,38 +2,39 @@
 layout: page
 title: Publications
 permalink: /publications/
+hide_title: true
 ---
 
 <div class="pub-list">
   
-  <!-- Template for future papers (Uncomment and fill) -->
+  <!-- 论文模板（去掉注释即可使用） -->
   <!--
   <div class="pub-item">
     <div class="pub-img">
       <img src="/assets/images/papers/paper1.jpg" alt="Paper Thumbnail">
     </div>
     <div class="pub-content">
-      <h3>Paper Title Goes Here</h3>
+      <h3>论文标题写在这里</h3>
       <div class="authors">
-        <strong>Yan Deteng</strong>, Author Two, Author Three
+        <strong>闫德腾</strong>, 第二作者, 第三作者
       </div>
       <div class="venue">
-        Conference Name 2026 (SIGGRAPH/CVPR/etc.)
+        会议名称 2026 (SIGGRAPH/CVPR/etc.)
       </div>
       <div class="pub-links">
         <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
-        <a href="#"><i class="fas fa-code"></i> Code</a>
-        <a href="#"><i class="fas fa-video"></i> Video</a>
+        <a href="#"><i class="fas fa-code"></i> 代码</a>
+        <a href="#"><i class="fas fa-video"></i> 视频</a>
       </div>
     </div>
   </div>
   -->
 
-  <!-- Empty State -->
+  <!-- 空状态 -->
   <div class="empty-state">
     <i class="fas fa-scroll"></i>
-    <p>Writing in progress...</p>
-    <div class="sub-text">Great research is on the way. Stay tuned!</div>
+    <p>撰写中...</p>
+    <div class="sub-text">优秀的研究成果即将呈现，敬请期待！</div>
   </div>
 
 </div>
