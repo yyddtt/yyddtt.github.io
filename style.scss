@@ -1100,48 +1100,98 @@ nav {
 /*********************/
 
 .project-card {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #eee;
+  background: linear-gradient(145deg, #ffffff 0%, #f9fbfd 100%);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 35px;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.06);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid rgba(0,0,0,0.04);
   position: relative;
   overflow: hidden;
+  z-index: 1;
+
+  /* 初始隐藏状态，用于JS动画 */
+  &.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* 顶部渐变装饰条 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    opacity: 0.9;
+    transition: height 0.3s ease;
+  }
+  
+  /* 背景装饰图标 (可选，增加层次感) */
+  &::after {
+    content: '\f121'; /* code icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-size: 120px;
+    color: rgba(0,0,0,0.02);
+    z-index: -1;
+    transform: rotate(-15deg);
+    transition: all 0.5s ease;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12);
+    border-color: rgba(79, 172, 254, 0.2);
+
+    &::before {
+      height: 6px;
+    }
+    
+    &::after {
+      color: rgba(79, 172, 254, 0.05);
+      transform: rotate(0deg) scale(1.1);
+      bottom: -10px;
+      right: 10px;
+    }
   }
 
   .project-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     
     @include mobile {
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
     }
   }
 
   h3 {
     margin: 0;
-    font-size: 18px; /* 调整标题字体大小 */
-    color: #333;
-    font-weight: 600;
+    font-size: 18px; /* 进一步调小标题 */
+    color: #2c3e50;
+    font-weight: 700;
+    letter-spacing: -0.3px;
   }
 
   .status-badge {
-    font-size: 12px;
-    padding: 4px 12px;
+    font-size: 10px; /* 调小徽章字体 */
+    padding: 4px 10px; /* 调小内边距 */
     border-radius: 20px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     
     &.wip {
       background: #fff8e1;
@@ -1155,39 +1205,78 @@ nav {
       border: 1px solid #c8e6c9;
     }
   }
+  
+  /* 技术栈标签 */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px; /* 调小间距 */
+    margin: 12px 0 16px 0; /* 调小外边距 */
+
+    .tech-tag {
+      font-size: 10px; /* 调小标签字体 */
+      font-weight: 600;
+      color: #666;
+      background: white;
+      padding: 3px 8px; /* 调小标签内边距 */
+      border-radius: 6px;
+      border: 1px solid #e1e4e8;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      &:hover {
+        background: #e3f2fd;
+        color: #1976d2;
+        border-color: #bbdefb;
+        transform: translateY(-1px);
+      }
+      
+      i {
+        font-size: 9px;
+        opacity: 0.7;
+      }
+    }
+  }
 
   p {
-    color: #666;
-    line-height: 1.6;
+    color: #555;
+    line-height: 1.6; /* 稍微调小行高 */
     margin-bottom: 20px;
-    font-size: 16px;
+    font-size: 14px; /* 调小正文字体 */
   }
 
   .project-links {
-    margin-top: 20px;
+    margin-top: auto;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    padding-top: 15px; /* 调小顶部内边距 */
     
     a {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px; /* 调小间距 */
       text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 6px 14px; /* 稍微调小内边距 */
-      font-size: 14px; /* 调整字体大小 */
-      border-radius: 6px;
-      background: #f5f5f5;
+      color: #444;
+      font-weight: 600;
+      padding: 6px 12px; /* 进一步调小按钮内边距 */
+      font-size: 12px; /* 调小按钮字体 */
+      border-radius: 6px; /* 稍微调小圆角 */
+      background: white;
       transition: all 0.2s;
       border: 1px solid #e0e0e0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 
       &:hover {
         background: #333;
         color: white;
         border-color: #333;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateY(-2px);
       }
       
       i {
-        font-size: 14px; /* 调整图标大小 */
+        font-size: 12px;
       }
     }
   }
