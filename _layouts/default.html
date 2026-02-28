@@ -50,6 +50,18 @@
           <div class="copyright">
             &copy; {{ site.time | date: "%Y" }} {{ site.name }}. Powered by Jekyll.
           </div>
+          
+          <!-- Busuanzi Visitor Count -->
+          <div class="visitor-stats">
+            <span id="busuanzi_container_site_pv" style="display:none">
+              <i class="fa fa-eye"></i>Total visits: <span id="busuanzi_value_site_pv"></span>
+            </span>
+            <span class="divider">|</span>
+            <span id="busuanzi_container_site_uv" style="display:none">
+              <i class="fa fa-user"></i>Total visitors: <span id="busuanzi_value_site_uv"></span>
+            </span>
+          </div>
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         </footer>
       </div>
     </div>
